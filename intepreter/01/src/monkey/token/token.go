@@ -64,4 +64,3 @@ func LookupIdent(ident string) TokenType {
 	}
 	return IDENT
 }
-
