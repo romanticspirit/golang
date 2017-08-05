@@ -16,3 +16,4 @@ bin/
 **/*.a
 **/.idea/
 **/github.com/
+godef/
