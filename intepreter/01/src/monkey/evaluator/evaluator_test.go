@@ -277,6 +277,46 @@ func TestFunctionApplication(t *testing.T) {
 	}
 }
 
+func TestClosures(t *testing.T) {
+	input := `
+let newAdder = fn(x) {
+  fn(y) { x + y };
+};
+
+let addTwo = newAdder(2);
+addTwo(2);`
+
+	testIntegerObject(t, testEval(input), 4)
+}
+
+func TestStringLiteral(t *testing.T) {
+	input := `"Hello World!"`
+
+	evaluated := testEval(input)
+	str, ok := evaluated.(*object.String)
+	if !ok {
+		t.Fatalf("object is not String. got=%T (%+v)", evaluated, evaluated)
+	}
+
+	if str.Value != "Hello World!" {
+		t.Errorf("String has wrong value. got=%q", str.Value)
+	}
+}
+
+func TestStringConcatenation(t *testing.T) {
+	input := `"Hello" + " " + "World!"`
+
+	evaluated := testEval(input)
+	str, ok := evaluated.(*object.String)
+	if !ok {
+		t.Fatalf("object is not String. got=%T (%+v)", evaluated, evaluated)
+	}
+
+	if str.Value != "Hello World!" {
+		t.Errorf("String has wrong value. got=%q", str.Value)
+	}
+}
+
 func testBooleanObject(t *testing.T, obj object.Object, expected bool, input string) bool {
 	result, ok := obj.(*object.Boolean)
 	if !ok {

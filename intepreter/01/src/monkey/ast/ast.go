@@ -277,16 +277,16 @@ type CallExpression struct {
 	Arguments []Expression
 }
 
-func (ce *CallExpression) expressionNode(){}
-func (ce *CallExpression) TokenLiteral() string{
+func (ce *CallExpression) expressionNode() {}
+func (ce *CallExpression) TokenLiteral() string {
 	return ce.Token.Literal
 }
 
-func (ce *CallExpression) String () string{
+func (ce *CallExpression) String() string {
 	var out bytes.Buffer
 
 	args := []string{}
-	for _, a := range ce.Arguments{
+	for _, a := range ce.Arguments {
 		args = append(args, a.String())
 	}
 
@@ -296,4 +296,18 @@ func (ce *CallExpression) String () string{
 	out.WriteString(")")
 
 	return out.String()
+}
+
+type StringLiteral struct {
+	Token token.Token
+	Value string
+}
+
+func (sl *StringLiteral) expressionNode (){}
+func (sl *StringLiteral) TokenLiteral () string{
+	return sl.Token.Literal
+}
+
+func (sl *StringLiteral) String() string{
+	return sl.Token.Literal
 }
