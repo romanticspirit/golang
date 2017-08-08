@@ -32,6 +32,8 @@ const (
 	RPAREN = ")"
 	LBRACE = "{"
 	RBRACE = "}"
+	LBRACKET = "["
+	RBRACKET = "]"
 
 	// Keywords
 	FUNCTION = "FUNCTION"
@@ -43,6 +45,7 @@ const (
 	RETURN   = "RETURN"
 
 	STRING   = "STRING"
+
 )
 
 type Token struct {
